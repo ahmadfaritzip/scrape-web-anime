@@ -4,7 +4,7 @@ import requests
 def samehadaku(URL):
    page = requests.get(URL)
    soup = BeautifulSoup(page.content, 'html.parser')
-   listAnimeTebaru = soup.main.find_all('div', 'widget_senction')[3].find('div', 'post-show').ul.find_all('li')
+   listAnimeTebaru = soup.main.find_all('div', 'widget_senction')[2].find('div', 'post-show').ul.find_all('li')
    links = []
    for i, anime in enumerate(listAnimeTebaru):
       # gambarAnime = anime.find('div', 'thumb').a.img['src']
