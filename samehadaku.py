@@ -4,7 +4,15 @@ import requests
 def samehadaku(URL):
    page = requests.get(URL)
    soup = BeautifulSoup(page.content, 'html.parser')
-   listAnimeTebaru = soup.main.find_all('div', 'widget_senction')[2].find('div', 'post-show').ul.find_all('li')
+   listAnimeTebaru = soup.main.find_all('div', 'widget_senction')
+
+   # Mencari Widget section episode terbaru-nya
+   for idx,widget_title in enumerate(listAnimeTebaru):
+      if(widget_title.find('div','widget-title').text == 'Episode Terbaru'):
+         break
+   
+   # Semua list anime episode terbaru
+   listAnimeTebaru = listAnimeTebaru[idx].find('div', 'post-show').ul.find_all('li')
    links = []
    for i, anime in enumerate(listAnimeTebaru):
       # gambarAnime = anime.find('div', 'thumb').a.img['src']
